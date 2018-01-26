@@ -57,8 +57,14 @@ let calcBlocks = (array) => {
   return output;
 };
 
-
+//INPUT
 let testArray = [5, 3, 7, 2, 6, 4, 5, 9, 1, 2];
+// OUTPUT -> 14
+
+// CONSTRAINTS ->NONE
+
+// BIG O
+  // O(N)
 
 console.log(calcBlocks(testArray));
 
