@@ -21,44 +21,50 @@ const calcWell = (start, end, valley) => {
   return (lowerPeak(start, end) * valley.length - valleyArea);
 }
 
-//console.log(calcWell(5,7,[1,1,1,1]));
-
 let calcBlocks = (array) => {
   let output = 0;
-  let peaks = [];
 
-  let currStart = null;
-  let currEnd = null;
+  let startPeak, endPeak = null;
   let currValley = [];
 
   for (let i = 0; i < array.length; i++) {
-    let leftMax = IsMaxOfSide(array[i], array.slice(0,i));
-    let rightMax = IsMaxOfSide(array[i], array.slice(i+1) || []);
+    let leftMax = IsMaxOfSide(array[i], array.slice(0, i));
+    let rightMax = IsMaxOfSide(array[i], array.slice(i + 1));
 
-    //if we've found a peak
+    // console.log(startPeak, endPeak)
+
     if (leftMax || rightMax) {
-      if (!currStart) {
-        currStart = array[i];
-      }
-      if (currStart) {
-        currEnd = array[i]
-        let currWell = calcWell(currStart, currEnd, currValley);
-        output += currWell;
+      if (!startPeak) {
+        startPeak = array[i];
+      } else {
+        endPeak = array[i];
+        output += calcWell(startPeak, endPeak, currValley);
 
-        currStart = currEnd;
-        currEnd = null;
+        startPeak = endPeak;
+        endPeak = null;
         currValley = [];
       }
     } else {
-      // the curent block is a valley
       currValley.push(array[i]);
     }
   }
   return output;
 };
 
+// Skeleton
+// iterate through the array
+// test if it's a peak
+// true
+  // if no start assign start
+  // if start !endPeak assign endPeak
+  //  calculate the area of the well
+// false 
+  // push the block to the valley array
+
 //INPUT
 let testArray = [5, 3, 7, 2, 6, 4, 5, 9, 1, 2];
+let testArray2 = [1, 2, 3, 0, 0, 0, 0, 0, 3];
+
 // OUTPUT -> 14
 
 // CONSTRAINTS ->NONE
@@ -66,7 +72,8 @@ let testArray = [5, 3, 7, 2, 6, 4, 5, 9, 1, 2];
 // BIG O
   // O(N)
 
-console.log(calcBlocks(testArray));
+// console.log(calcBlocks(testArray));
+//console.log(calcBlocks(testArray2));
 
 //TRANSFORMATION
 
