@@ -1,3 +1,5 @@
+// import makeGrid from './makeGrid';
+
 document.addEventListener("DOMContentLoaded", () => {
   
   const submitBtn = document.getElementById('submitBtn');
@@ -17,25 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then((response) => {
           let gridSize = response.cols;
-          console.log(response)
-          
-          let makeGrid = (gridSize) => {
+          const makeGrid = (gridSize) => {
+            let boxDimensions = 600/gridSize;
             for (let rows = 0; rows < gridSize; rows++) {
               for (let cols = 0; cols < gridSize; cols++) {
-                const className = 'box'
-                document.getElementById('grid').append(
-                  `<div class=${className}></div>`
-                  )
+                let box = document.createElement('div');
+                  box.className = 'box'
+                  box.id = `${rows}${cols}`
+                  box.style.width = `${boxDimensions}px`;
+                  box.style.height = `${boxDimensions}px`;
+                document.getElementById('grid').append(box);
               }
             }
-            let grid = document.getElementById('grid');
-            let boxes = document.getElementsByClassName('box');
-
-            console.log(boxes);
-
-
-          }
+          };          
+          
           makeGrid(gridSize);
+
       });
   };
 

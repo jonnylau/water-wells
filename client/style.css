@@ -1,5 +1,5 @@
 body {
-  background-color: #3F7FBF;
+  background-color: white;
 }
 
 #grid {
@@ -8,8 +8,8 @@ body {
   outline:2px solid #000;
   font-size: 0;
   margin:auto;
-  height:960px;
-  width:960px;
+  height:600px;
+  width:600px;
   padding: 0;
   border: black;
 }
