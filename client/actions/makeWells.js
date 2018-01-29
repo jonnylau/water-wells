@@ -16,7 +16,26 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('http://localhost:3000/makeBlocks', myInit)
       .then(res => res.json())
       .then((response) => {
-        console.log(response);
+          let gridSize = response.cols;
+          console.log(response)
+          
+          let makeGrid = (gridSize) => {
+            for (let rows = 0; rows < gridSize; rows++) {
+              for (let cols = 0; cols < gridSize; cols++) {
+                const className = 'box'
+                document.getElementById('grid').append(
+                  `<div class=${className}></div>`
+                  )
+              }
+            }
+            let grid = document.getElementById('grid');
+            let boxes = document.getElementsByClassName('box');
+
+            console.log(boxes);
+
+
+          }
+          makeGrid(gridSize);
       });
   };
 
