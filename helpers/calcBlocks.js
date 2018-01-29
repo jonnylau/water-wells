@@ -31,6 +31,7 @@ const calcBlocks = (array) => {
     wellCount: wellCount,
     wellsByCol: wellsByCol,
     cols: cols,
+    blocks: array,
   }
 }
 
