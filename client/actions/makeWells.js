@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
           let blocks = response.blocks;
           
           const makeGrid = (gridSize) => {
-            let boxDimensions = 600/gridSize;
-            for (let rows = gridSize -1; rows >= 0; rows--) {
-              for (let cols = 0; cols < gridSize; cols++) {
+            let boxDimensions = 600/(gridSize+1);
+            for (let rows = gridSize; rows >= 0; rows--) {
+              for (let cols = 0; cols <= gridSize; cols++) {
                 let box = document.createElement('div');
                   box.className = 'box'
                   box.id = `${rows}${cols}`
@@ -39,23 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
           };          
           
           makeGrid(gridSize);
-          const renderBlocks = () => {
-            for (let col = 0; col < gridSize; col++) {
+          
+          const colorGrid = () => {
+            for (let col = 0; col <= gridSize; col++) {
               for (let row = 0; row < blocks[col]; row ++) {
                 document.getElementById(`${row}${col}`).style.backgroundColor = 'black';
               }
             }
-            for (let col = 0; col < gridSize; col++) {
+            for (let col = 0; col <= gridSize; col++) {
               for (let row = 0; row < wells[col]; row ++) {
-                document.getElementById(`${row}${col}`).style.backgroundColor = 'blue';
+                let targetRow = row + blocks[col];
+                console.log(targetRow,col)
+                document.getElementById(`${targetRow}${col}`).style.backgroundColor = 'blue';
               }
             }
-            // for every element in the input array (col)
-            // for the count of that element (blocks) 
-            // row = gridSize - 1
-            // getElementById(row, col)   
           }
-          renderBlocks();
+          colorGrid();
+
       });
   };
 

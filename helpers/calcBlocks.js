@@ -22,16 +22,18 @@ const calcBlocks = (array) => {
     return acc + well;
   });
   
-  let maxHeight = wellsByCol.reduce((acc, well) => {
+  let maxHeight = array.reduce((acc, well) => {
     return acc > well ? acc : well;
-  });
-  let cols = Math.max(maxHeight, wellsByCol.length)
+  },0);
+
+  let cols = Math.max(maxHeight, array.length)
 
   return {
     wellCount: wellCount,
     wellsByCol: wellsByCol,
     cols: cols,
     blocks: array,
+    maxHeight: maxHeight
   }
 }
 
